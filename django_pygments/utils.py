@@ -13,13 +13,11 @@ class ListHtmlFormatter(HtmlFormatter):
         return self._wrap_div(self._wrap_pre(self._wrap_list(source)))
 
     def _wrap_list(self, source):
-        yield 0, '<ol>'
         for i, t in source:
             if i == 1:
                 # it's a line of formatted code
-                t = '<li><div class="line">%s</div></li>' % t
+                t = '<div class="line">%s</div>' % t
             yield i, t
-        yield 0, '</ol>'
 
 def pygmentify_html(text, **kwargs):
     text = smart_text(text)
